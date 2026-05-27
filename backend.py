@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-# ================= DATA GENERATION =================
+
 def generate_data():
     np.random.seed(42)
     days = np.arange(1, 51)
@@ -12,7 +12,7 @@ def generate_data():
         "Demand": demand
     })
 
-# ================= ML MODEL =================
+
 def linear_regression(X, y):
     mean_x = np.mean(X)
     mean_y = np.mean(y)
@@ -22,20 +22,20 @@ def linear_regression(X, y):
 
     return m, c
 
-# ================= PREDICTION =================
+
 def predict_demand(m, c):
-    future_days = np.arange(51, 61)
+    future_days = np.arange(len(X)+1,len(X)+11)
     predicted = m*future_days + c
     return future_days, predicted
 
-# ================= BREAK EVEN =================
+
 def break_even(FC, SP, VC):
     return FC / (SP - VC)
 
-# ================= PROFIT =================
+
 def calculate_profit(SP, VC, FC, demand):
     return (SP - VC)*demand - FC
 
-# ================= OPTIMAL PRICE =================
+
 def optimal_price(FC, VC, target_profit, demand):
     return VC + (FC + target_profit) / demand
